@@ -1,0 +1,83 @@
+react project essentials
+
+# Initialize Vite with the React-TypeScript template (or vanilla JS if you prefer, but we will use standard JS/JSX configurations for absolute compatibility here)
+npm create vite@latest denkar-agency -- --template react
+
+# Move into your project directory
+cd denkar-agency
+
+# Install core dependencies
+npm install react-router-dom framer-motion lucide-react
+
+# Install Tailwind CSS, PostCSS, and Autoprefixer as development dependencies
+npm install -D tailwindcss postcss autoprefixer
+
+# Initialize Tailwind configuration files
+npm install tailwindcss @tailwindcss/postcss postcss
+
+Then manually create these files.
+
+in root folder 
+>postcss.config.js
+export default {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+}
+>src/index.css
+@import "tailwindcss";
+
+# make tailwind.config.js in root
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+
+  theme: {
+    extend: {
+      colors: {
+        // Premium Dark Theme Palette
+        brand: {
+          bg: '#030014',       // Deep space black/purple hue
+          surface: '#0a0520',  // Card/Section surface background
+          accent: '#00d2ff',   // Electric Blue
+          purple: '#7928ca',   // Deep Royal Purple
+          glow: '#9b51e0',     // Accent glow color
+        },
+
+        text: {
+          primary: '#ffffff',
+          secondary: '#b3b3b3',
+          muted: '#666666',
+        }
+      },
+
+      fontFamily: {
+        // Modern SaaS typography stack
+        sans: ['Inter', 'Space Grotesk', 'sans-serif'],
+      },
+
+      boxShadow: {
+        glass: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+        'neon-blue': '0 0 15px rgba(0, 210, 255, 0.3)',
+        'neon-purple': '0 0 15px rgba(121, 40, 202, 0.3)',
+      },
+
+      backdropBlur: {
+        premium: '20px',
+      }
+    },
+  },
+
+  plugins: [],
+}
+
+for making folders use 
+mkdir src\components\ui
+mkdir src\context
+mkdir src\layouts
+mkdir src\pages
+mkdir src\styles
+mkdir src\utils
