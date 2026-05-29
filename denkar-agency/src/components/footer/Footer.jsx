@@ -31,7 +31,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* UPPER ZONE: High-Conversion Lead Capture Card Banner */}
-        <div className="max-w-5xl mx-auto glass-panel p-8 md:p-12 rounded-3xl border border-white/5 bg-gradient-to-br from-[#0c0728]/60 to-transparent shadow-glass mb-20 relative overflow-hidden group hover:border-brand-accent/10 transition-colors duration-500">
+        <div id="contact" className="max-w-5xl mx-auto glass-panel p-8 md:p-12 rounded-3xl border border-white/5 bg-gradient-to-br from-[#0c0728]/60 to-transparent shadow-glass mb-20 relative overflow-hidden group hover:border-brand-accent/10 transition-colors duration-500">
           <div className="absolute top-0 right-0 w-64 h-64 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none" />
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">

@@ -28,7 +28,7 @@ export default function Navbar() {
     { label: 'Why Us', targetId: 'why-choose-us' },
     { label: 'Process', targetId: 'process' },
     { label: 'FAQ', targetId: 'faq' },
-    { label: 'Contact', targetId: 'why-choose-us' }, // Redirecting to CTA box
+    { label: 'Contact', targetId: 'contact' }, // Redirecting to CTA box
   ];
 
   return (
