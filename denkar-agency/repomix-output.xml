@@ -53,16 +53,26 @@ src/App.jsx
 src/assets/hero.png
 src/assets/react.svg
 src/assets/vite.svg
+src/components/faq/FAQ.jsx
+src/components/faq/FAQItem.jsx
+src/components/features/FeatureCard.jsx
+src/components/features/Features.jsx
+src/components/footer/Footer.jsx
+src/components/hero/Hero.jsx
 src/components/Navbar.jsx
-src/index.css
+src/components/portfolio/Portfolio.jsx
+src/components/portfolio/ProjectCard.jsx
+src/components/process/Process.jsx
+src/components/process/ProcessStep.jsx
+src/components/services/ServiceCard.jsx
+src/components/services/Services.jsx
+src/components/testimonials/Testimonials.jsx
 src/layouts/RootLayout.jsx
 src/main.jsx
-src/pages/ContactPage.jsx
 src/pages/Home.jsx
-src/pages/PortfolioPage.jsx
-src/pages/ServicesPage.jsx
 src/styles/index.css
 tailwind.config.js
+vercel.json
 vite.config.js
 </directory_structure>
 
@@ -149,12 +159,14 @@ export default defineConfig([
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.3.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
     "framer-motion": "^12.40.0",
     "lucide-react": "^1.17.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.16.0"
+    "react-router-dom": "^7.16.0",
+    "three": "^0.184.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -167,7 +179,7 @@ export default defineConfig([
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
     "postcss": "^8.5.15",
-    "tailwindcss": "^4.3.0",
+    "tailwindcss": "^3.4.19",
     "vite": "^8.0.12"
   }
 }
@@ -176,7 +188,8 @@ export default defineConfig([
 <file path="postcss.config.js">
 export default {
   plugins: {
-    "@tailwindcss/postcss": {},
+    tailwindcss: {},
+    autoprefixer: {},
   },
 }
 </file>
@@ -423,9 +436,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RootLayout from './layouts/RootLayout';
 import Home from './pages/Home';
-import ServicesPage from './pages/ServicesPage';
-import PortfolioPage from './pages/PortfolioPage';
-import ContactPage from './pages/ContactPage';
+
 
 export default function App() {
   return (
@@ -433,9 +444,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
-          <Route path="services" element={<ServicesPage />} />
-          <Route path="portfolio" element={<PortfolioPage />} />
-          <Route path="contact" element={<ContactPage />} />
           {/* Fallback route wildcard: Redirection framework */}
           <Route path="*" element={<Home />} />
         </Route>
@@ -453,124 +461,1332 @@ export default function App() {
 <svg xmlns="http://www.w3.org/2000/svg" width="77" height="47" fill="none" aria-labelledby="vite-logo-title" viewBox="0 0 77 47"><title id="vite-logo-title">Vite</title><style>.parenthesis{fill:#000}@media (prefers-color-scheme:dark){.parenthesis{fill:#fff}}</style><path fill="#9135ff" d="M40.151 45.71c-.663.844-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.493c-.92 0-1.457-1.04-.92-1.788l7.479-10.471c1.07-1.498 0-3.578-1.842-3.578H15.443c-.92 0-1.456-1.04-.92-1.788l9.696-13.576c.213-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.472c-1.07 1.497 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.087.89 1.83L40.153 45.712z"/><mask id="a" width="48" height="47" x="14" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#000" d="M40.047 45.71c-.663.843-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.389c-.92 0-1.457-1.04-.92-1.788l7.479-10.472c1.07-1.497 0-3.578-1.842-3.578H15.34c-.92 0-1.456-1.04-.92-1.788l9.696-13.575c.213-.297.556-.474.92-.474H53.93c.92 0 1.456 1.04.92 1.788L47.37 13.03c-1.07 1.498 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.088.89 1.831L40.049 45.712z"/></mask><g mask="url(#a)"><g filter="url(#b)"><ellipse cx="5.508" cy="14.704" fill="#eee6ff" rx="5.508" ry="14.704" transform="rotate(269.814 20.96 11.29)scale(-1 1)"/></g><g filter="url(#c)"><ellipse cx="10.399" cy="29.851" fill="#eee6ff" rx="10.399" ry="29.851" transform="rotate(89.814 -16.902 -8.275)scale(1 -1)"/></g><g filter="url(#d)"><ellipse cx="5.508" cy="30.487" fill="#8900ff" rx="5.508" ry="30.487" transform="rotate(89.814 -19.197 -7.127)scale(1 -1)"/></g><g filter="url(#e)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.928 4.177)scale(1 -1)"/></g><g filter="url(#f)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.738 5.52)scale(1 -1)"/></g><g filter="url(#g)"><ellipse cx="14.072" cy="22.078" fill="#eee6ff" rx="14.072" ry="22.078" transform="rotate(93.35 31.245 55.578)scale(-1 1)"/></g><g filter="url(#h)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#i)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#j)"><ellipse cx="14.592" cy="9.743" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(39.51 14.592 9.743)"/></g><g filter="url(#k)"><ellipse cx="61.728" cy="-5.321" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 61.728 -5.32)"/></g><g filter="url(#l)"><ellipse cx="55.618" cy="7.104" fill="#00c2ff" rx="5.971" ry="9.665" transform="rotate(37.892 55.618 7.104)"/></g><g filter="url(#m)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#n)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#o)"><ellipse cx="49.857" cy="30.678" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 49.857 30.678)"/></g><g filter="url(#p)"><ellipse cx="52.623" cy="33.171" fill="#00c2ff" rx="5.971" ry="15.297" transform="rotate(37.892 52.623 33.17)"/></g></g><path d="M6.919 0c-9.198 13.166-9.252 33.575 0 46.789h6.215c-9.25-13.214-9.196-33.623 0-46.789zm62.424 0h-6.215c9.198 13.166 9.252 33.575 0 46.789h6.215c9.25-13.214 9.196-33.623 0-46.789" class="parenthesis"/><defs><filter id="b" width="60.045" height="41.654" x="-5.564" y="16.92" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="c" width="90.34" height="51.437" x="-40.407" y="-6.762" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="d" width="79.355" height="29.4" x="-35.435" y="2.801" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="e" width="79.579" height="29.4" x="-30.84" y="20.8" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="f" width="79.579" height="29.4" x="-29.307" y="21.949" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="g" width="74.749" height="58.852" x="29.961" y="-17.13" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="h" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="i" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="j" width="56.045" height="63.649" x="-13.43" y="-22.082" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="k" width="54.814" height="64.646" x="34.321" y="-37.644" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="l" width="33.541" height="35.313" x="38.847" y="-10.552" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="m" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="n" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="o" width="54.814" height="64.646" x="22.45" y="-1.645" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="p" width="39.409" height="43.623" x="32.919" y="11.36" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter></defs></svg>
 </file>
 
+<file path="src/components/faq/FAQ.jsx">
+import React, { useState } from 'react';
+import FAQItem from './FAQItem';
+
+const FAQ_DATA = [
+  {
+    question: 'How long does a typical custom corporate project take to build?',
+    answer: 'Most custom landing pages and corporate sites deploy within 3 to 5 weeks. More complex applications with heavy API integrations, custom dashboards, or database layers generally track over a 6 to 10 week cycle depending on structural scope blueprints.',
+  },
+  {
+    question: 'Do you build on pre-made WordPress templates or Webflow frameworks?',
+    answer: 'No. We build completely custom architectural code paths using cutting-edge React architectures (Vite/Next.js) layered with Tailwind CSS engines. This eliminates security blockages, heavy script bloat, and gives your organization absolute structural scaling freedom.',
+  },
+  {
+    question: 'Will our application platform rank well on Google search indexing?',
+    answer: 'Absolutely. Because we write semantic code and optimize image bundles natively, our engines pass Lighthouse and Core Web Vitals checks with flying colors. We ensure near-instant load times, built-in structural meta maps, and strict SEO-ready page trees.',
+  },
+  {
+    question: 'Can our internal creative marketing teams update content post-launch?',
+    answer: 'Yes. We seamlessly wire our modular components to modern headless Content Management Systems (like Sanity or Strapi). Your team can easily edit copy, swap media items, and publish articles inside an absolute clean UI without risking breaking any underlying system structures.',
+  }
+];
+
+export default function FAQ() {
+  // Track open state using a single index container or null if completely collapsed
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleAccordion = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <section id="faq" className="py-24 relative overflow-hidden border-t border-white/5">
+      
+      {/* Decorative Spatial Background Ambient Lighting Grid */}
+      <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-brand-purple/5 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Typography Header Block */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div className="inline-block text-xs font-bold tracking-widest text-brand-accent uppercase bg-brand-accent/10 border border-brand-accent/20 px-4 py-1.5 rounded-full">
+            Inquiries Matrix
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+            Frequently Asked <span className="bg-gradient-to-r from-brand-accent to-brand-purple bg-clip-text text-transparent">Questions</span>
+          </h2>
+          <p className="text-text-secondary text-base sm:text-lg">
+            Got technical questions? We have clear, straightforward answers. Here is what engineering partners ask us most.
+          </p>
+        </div>
+
+        {/* Master Accordion Shell Core Layout Grid */}
+        <div className="max-w-4xl mx-auto glass-panel p-6 sm:p-10 rounded-2xl border border-white/5 shadow-glass">
+          <div className="divide-y divide-white/5">
+            {FAQ_DATA.map((faq, index) => (
+              <FAQItem
+                key={faq.question}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openIndex === index}
+                onClick={() => toggleAccordion(index)}
+              />
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/faq/FAQItem.jsx">
+import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
+
+export default function FAQItem({ question, answer, isOpen, onClick }) {
+  return (
+    <div className="border-b border-white/5 last:border-0 py-4">
+      {/* Interactive Disclosure Header Button Trigger */}
+      <button
+        onClick={onClick}
+        className="w-full py-4 flex items-center justify-between text-left group focus:outline-none"
+        aria-expanded={isOpen}
+      >
+        <span className="text-base sm:text-lg font-bold text-white group-hover:text-brand-accent transition-colors duration-300 pr-4">
+          {question}
+        </span>
+        
+        {/* Animated Rotating Vector Chevron Icon */}
+        <div className={`p-2 rounded-lg bg-white/5 border border-white/5 text-text-secondary group-hover:text-white transition-all duration-300 ${isOpen ? 'bg-brand-accent/10 border-brand-accent/20 text-brand-accent' : ''}`}>
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+          >
+            <ChevronDown className="w-4 h-4" />
+          </motion.div>
+        </div>
+      </button>
+
+      {/* Smooth Expanding Dropdown Wrapper */}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+            className="overflow-hidden"
+          >
+            <div className="pb-6 pt-2 text-text-secondary text-sm sm:text-base leading-relaxed max-w-4xl">
+              {answer}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/features/FeatureCard.jsx">
+import React from 'react';
+import { motion } from 'framer-motion';
+
+export default function FeatureCard({ title, description, badge, highlightText, delay }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: delay, type: 'spring', stiffness: 90 }}
+      whileHover={{ scale: 1.02 }}
+      className="group relative rounded-2xl p-6 md:p-8 bg-[#0a0520]/40 backdrop-blur-premium border border-white/5 shadow-glass overflow-hidden flex flex-col justify-between h-full transition-all duration-300 hover:border-brand-purple/30"
+    >
+      {/* Premium Geometric Background Grid & Glow Patterns */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand-purple/10 to-transparent rounded-bl-full pointer-events-none transition-all duration-500 group-hover:scale-150 group-hover:from-brand-accent/20" />
+      <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-glow/5 rounded-full blur-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      <div className="relative z-10 space-y-6">
+        {/* Upper Header Row Tracking Badges */}
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] font-black tracking-widest text-brand-accent bg-brand-accent/10 border border-brand-accent/20 px-3 py-1 rounded-full uppercase">
+            {badge}
+          </span>
+          <span className="text-3xl font-black text-white/5 group-hover:text-brand-purple/20 font-sans tracking-tighter transition-colors duration-500 select-none">
+            //DENKAR
+          </span>
+        </div>
+
+        {/* Content Typography Layer */}
+        <div className="space-y-2">
+          <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-brand-accent transition-colors duration-300">
+            {title}
+          </h3>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {description}
+          </p>
+        </div>
+      </div>
+
+      {/* Structural Accent Footer Layer */}
+      <div className="relative z-10 pt-6 mt-4 border-t border-white/5 flex items-center justify-between">
+        <span className="text-xs font-semibold text-brand-purple group-hover:text-white transition-colors duration-300">
+          {highlightText}
+        </span>
+        <div className="w-1.5 h-1.5 rounded-full bg-brand-purple group-hover:bg-brand-accent group-hover:shadow-neon-blue transition-all duration-300" />
+      </div>
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/features/Features.jsx">
+import React from 'react';
+import FeatureCard from './FeatureCard';
+
+const FEATURES_DATA = [
+  {
+    badge: 'Performance',
+    title: 'Extreme Speed Matrix',
+    description: 'We compile static components built on premium rendering layers. Expect 100ms load times, maximized core web vitals, and near-instant navigation.',
+    highlightText: 'Sub-100ms TTFB Core',
+  },
+  {
+    badge: 'Architecture',
+    title: 'Monolithic Component Cleanliness',
+    description: 'We code custom modular component structures entirely from scratch. Scale effortlessly without colliding scripts, formatting bugs, or dependency blockages.',
+    highlightText: 'Production-Ready Modular',
+  },
+  {
+    badge: 'Design UI',
+    title: 'Silicon Valley Aesthetics',
+    description: 'We build immersive interfaces utilizing micro-interactions, dark modes, glassmorphism, and balanced typography layouts tailored for corporate spaces.',
+    highlightText: 'Pixel-Perfect Fidelity',
+  },
+  {
+    badge: 'Conversion',
+    title: 'Engineered Client Pipelines',
+    description: 'Beautiful websites are useless if they don’t convert. Our custom user funnels are explicitly structured to scale lead capturing and customer actions.',
+    highlightText: 'Optimized Action Paths',
+  }
+];
+
+export default function Features() {
+  return (
+    <section id="why-choose-us" className="py-24 relative overflow-hidden border-t border-white/5">
+      
+      {/* Decorative Interactive Background Mesh Spheres */}
+      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-brand-purple/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Headline Element Block */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div className="inline-block text-xs font-bold tracking-widest text-brand-purple uppercase bg-brand-purple/10 border border-brand-purple/20 px-4 py-1.5 rounded-full">
+            The Denkar Standard
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+            Why Startups & Enterprises <br className="hidden sm:inline"/>
+            Choose Our <span className="bg-gradient-to-r from-brand-accent to-brand-purple bg-clip-text text-transparent">Development Engine</span>
+          </h2>
+          <p className="text-text-secondary text-base sm:text-lg">
+            We bridge the gap between creative visual artistry and complex backend software systems. 
+          </p>
+        </div>
+
+        {/* Structural Interactive Responsive Layout Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {FEATURES_DATA.map((feature, index) => (
+            <FeatureCard
+              key={feature.title}
+              badge={feature.badge}
+              title={feature.title}
+              description={feature.description}
+              highlightText={feature.highlightText}
+              delay={index * 0.1}
+            />
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/footer/Footer.jsx">
+import React, { useState } from 'react';
+import {  ArrowRight, CheckCircle } from 'lucide-react';
+
+export default function Footer() {
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setSubmitted(true);
+      setEmail('');
+      setTimeout(() => setSubmitted(false), 4000);
+    }
+  };
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <footer className="relative bg-[#030014] border-t border-white/5 pt-24 pb-12 overflow-hidden">
+      
+      {/* Absolute Decorative Geometric Ambient Lighting Blobs */}
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-purple/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* UPPER ZONE: High-Conversion Lead Capture Card Banner */}
+        <div id="contact" className="max-w-5xl mx-auto glass-panel p-8 md:p-12 rounded-3xl border border-white/5 bg-gradient-to-br from-[#0c0728]/60 to-transparent shadow-glass mb-20 relative overflow-hidden group hover:border-brand-accent/10 transition-colors duration-500">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
+              <span className="text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-3 py-1 rounded-full border border-brand-accent/20">
+                Let's Build Something Legendary
+              </span>
+              <h3 className="text-2xl sm:text-4xl font-black tracking-tight text-white">
+                Ready to Accelerate Your <br />Digital Footprint?
+              </h3>
+              <p className="text-text-secondary text-sm sm:text-base max-w-md">
+                Join our elite product brief to receive deep architectural updates, tech system insights, and performance engineering tactics.
+              </p>
+            </div>
+
+            {/* State-Driven Newsletter Capture Node */}
+            <div className="w-full">
+              {!submitted ? (
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your corporate email"
+                    className="flex-1 bg-white/[0.03] border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-text-muted text-sm focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all"
+                  />
+                  <button
+                    type="submit"
+                    className="bg-brand-accent hover:bg-brand-accent/90 text-brand-bg font-bold text-sm px-6 py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-neon-blue group/btn"
+                  >
+                    Subscribe Brief
+                    <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                </form>
+              ) : (
+                <div className="flex items-center gap-3 bg-brand-accent/10 border border-brand-accent/20 p-4 rounded-xl text-brand-accent">
+                  <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-sm font-semibold">
+                    Transmission encrypted. You have successfully joined the Denkar pipeline loop.
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* MIDDLE ZONE: Core Architectural Navigation Map & Link Links */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-5xl mx-auto pb-16 border-b border-white/5">
+          
+          {/* Brand Identity Pillar Block */}
+          <div className="space-y-4 md:col-span-1">
+            <div className="text-2xl font-black text-white tracking-tighter select-none font-sans">
+              DENKAR<span className="text-brand-accent">.</span>
+            </div>
+            <p className="text-text-muted text-xs leading-relaxed">
+              Engineering premium, ultra-high-performance components and immersion front-end layout pipelines for enterprise spaces.
+            </p>
+            {/* Social Vector Node Layouts */}
+            <div className="flex items-center gap-3 pt-2">
+
+              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="p-2 rounded-lg bg-white/5 border border-white/5 text-text-secondary hover:text-white hover:border-brand-accent transition-all duration-300" aria-label="Twitter Profile">
+                Twitter
+              </a>
+            </div>
+          </div>
+
+          {/* Sitemaps System Lists */}
+          <div>
+            <h4 className="text-xs font-black text-white uppercase tracking-widest mb-4">ENGINE</h4>
+            <ul className="space-y-2.5 text-xs font-medium text-text-secondary">
+              <li><button onClick={() => scrollToSection('hero')} className="hover:text-brand-accent transition-colors">Core System</button></li>
+              <li><button onClick={() => scrollToSection('services')} className="hover:text-brand-accent transition-colors">Capability Grid</button></li>
+              <li><button onClick={() => scrollToSection('portfolio')} className="hover:text-brand-accent transition-colors">Showcase Deck</button></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-xs font-black text-white uppercase tracking-widest mb-4">PROTOCOLS</h4>
+            <ul className="space-y-2.5 text-xs font-medium text-text-secondary">
+              <li><button onClick={() => scrollToSection('why-choose-us')} className="hover:text-brand-accent transition-colors">The Standard</button></li>
+              <li><button onClick={() => scrollToSection('process')} className="hover:text-brand-accent transition-colors">Workflow Blueprint</button></li>
+              <li><button onClick={() => scrollToSection('faq')} className="hover:text-brand-accent transition-colors">Inquiries Matrix</button></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* LOWER ZONE: Intellectual Property Legal Row */}
+        <div className="max-w-5xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-medium text-text-muted gap-4">
+          <div>
+            © 2026 Denkar Systems Inc. All rights architecture reserved.
+          </div>
+          <div className="flex items-center gap-6 font-sans">
+            <a href="#privacy" className="hover:text-white transition-colors">Privacy System</a>
+            <a href="#terms" className="hover:text-white transition-colors">Terms of Operations</a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  );
+}
+</file>
+
+<file path="src/components/hero/Hero.jsx">
+import React, { useRef, useMemo } from 'react';
+import { Canvas, useFrame, extend } from '@react-three/fiber';
+import { Effects } from '@react-three/drei';
+import { UnrealBloomPass } from 'three-stdlib';
+import * as THREE from 'three';
+import { motion } from 'framer-motion';
+import { ArrowRight, Code, Sparkles, Terminal } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+extend({ UnrealBloomPass });
+
+// --- 3D PARTICLE SWARM ---
+const ParticleSwarm = () => {
+  const meshRef = useRef();
+  const count = 3000; // Optimized for hero section
+  
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+  const target = useMemo(() => new THREE.Vector3(), []);
+  const pColor = useMemo(() => new THREE.Color(), []);
+  
+  const positions = useMemo(() => {
+    const pos = [];
+    for (let i = 0; i < count; i++) {
+      pos.push(new THREE.Vector3(
+        (Math.random() - 0.5) * 40,
+        (Math.random() - 0.5) * 30,
+        (Math.random() - 0.5) * 40
+      ));
+    }
+    return pos;
+  }, []);
+
+  const material = useMemo(() => new THREE.MeshBasicMaterial({ color: 0xffffff }), []);
+  const geometry = useMemo(() => new THREE.TetrahedronGeometry(0.12), []);
+
+  const PARAMS = useMemo(() => ({ pull: 0.15, chaos: 0.015, speed: 0.08 }), []);
+
+  useFrame((state) => {
+    if (!meshRef.current) return;
+    const time = state.clock.elapsedTime;
+
+    for (let i = 0; i < count; i++) {
+      const { pull, chaos, speed } = PARAMS;
+      const angle = i * 0.15 + time * speed;
+      const baseRadius = 45;
+
+      let x0 = Math.cos(angle) * baseRadius;
+      let z0 = Math.sin(angle) * baseRadius;
+      let y0 = (Math.random() - 0.5) * 12;
+
+      const tiltX = Math.PI / 20;
+      const tiltZ = Math.PI / 60;
+
+      let x1 = x0 * Math.cos(tiltZ) - y0 * Math.sin(tiltZ);
+      let y1 = x0 * Math.sin(tiltZ) + y0 * Math.cos(tiltZ);
+      let yFinal = y1 * Math.cos(tiltX) - z0 * Math.sin(tiltX);
+      let zFinal = y1 * Math.sin(tiltX) + z0 * Math.cos(tiltX);
+      let xFinal = x1;
+
+      xFinal += Math.sin(i * 8.98 + time * chaos) * 3;
+      yFinal += Math.cos(i * 58.23 + time * chaos) * 3;
+      zFinal += Math.sin(i * 35.16 + time * chaos) * 2;
+
+      target.set(xFinal * (1 - pull), yFinal * (1 - pull), zFinal * (1 - pull));
+
+      // Gradient from blue to purple
+      const hue = 0.6 + (Math.sin(angle * 0.5) * 0.1);
+      pColor.setHSL(hue, 0.9, 0.65);
+
+      positions[i].lerp(target, 0.08);
+      dummy.position.copy(positions[i]);
+      dummy.updateMatrix();
+      meshRef.current.setMatrixAt(i, dummy.matrix);
+      meshRef.current.setColorAt(i, pColor);
+    }
+    meshRef.current.instanceMatrix.needsUpdate = true;
+    if (meshRef.current.instanceColor) meshRef.current.instanceColor.needsUpdate = true;
+  });
+
+  return <instancedMesh ref={meshRef} args={[geometry, material, count]} />;
+};
+
+// --- 3D Particle Background Component ---
+const ParticleBackground = () => {
+  return (
+    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-60" style={{ width: '100%', height: '100%' }}>
+      <Canvas camera={{ position: [0, 0, 70], fov: 50 }} dpr={[1, 2]}>
+        <ParticleSwarm />
+        <Effects disableGamma>
+          <unrealBloomPass threshold={0} strength={1.2} radius={0.5} />
+        </Effects>
+      </Canvas>
+    </div>
+  );
+};
+
+// Framer Motion Animation Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 100, damping: 20 },
+  },
+};
+
+export default function Hero() {
+  return (
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+      
+      {/* 3D Particle Background */}
+      <ParticleBackground />
+      
+      {/* Decorative Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
+      
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 max-w-5xl space-y-8"
+      >
+        {/* Upper Accent Badge */}
+        <motion.div variants={itemVariants} className="inline-flex justify-center">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-blue-500/20 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase text-blue-400 backdrop-blur-md shadow-lg">
+            <Sparkles className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '3s' }} />
+            Next-Gen Web Architecture
+          </div>
+        </motion.div>
+
+        {/* Master Copy Typography Stack */}
+        <motion.div variants={itemVariants} className="space-y-4">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-white leading-[1.1]">
+            We Engineer High-End <br />
+            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
+              Digital Flagships
+            </span>
+          </h1>
+          
+          <p className="text-gray-300 text-base sm:text-xl max-w-3xl mx-auto leading-relaxed font-normal">
+            Denkar builds elite custom software systems, scalable e-commerce platforms, and immersive user experiences designed to scale. We combine clean code with premium startup aesthetics.
+          </p>
+        </motion.div>
+
+        {/* CTA Buttons */}
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <Link
+            to="/contact"
+            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-blue-500/25"
+          >
+            Launch Project
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          
+          <Link
+            to="/portfolio"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-gray-300 bg-white/5 border border-white/10 hover:bg-white/10 hover:text-white transition-all duration-300 backdrop-blur-md"
+          >
+            <Code className="w-4 h-4" />
+            View Showcase
+          </Link>
+        </motion.div>
+
+        {/* Tech Stack Indicators */}
+        <motion.div 
+          variants={itemVariants}
+          className="pt-12 grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto border-t border-white/10 text-left"
+        >
+          <div className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-1 flex items-center gap-1.5">
+              <Terminal className="w-3.5 h-3.5" /> Core Stack
+            </div>
+            <div className="text-sm font-bold text-white">React / Vite / Node</div>
+          </div>
+
+          <div className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-1 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" /> Design Target
+            </div>
+            <div className="text-sm font-bold text-white">Premium Silicon Valley Quality</div>
+          </div>
+
+          <div className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm col-span-2 md:col-span-1">
+            <div className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">
+              Performance Index
+            </div>
+            <div className="text-sm font-bold text-white">100% Lighthouse Clean</div>
+          </div>
+        </motion.div>
+
+      </motion.div>
+    </section>
+  );
+}
+</file>
+
 <file path="src/components/Navbar.jsx">
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
-
-const NAV_LINKS = [
-  { label: 'Home', path: '/' },
-  { label: 'Services', path: '/services' },
-  { label: 'Portfolio', path: '/portfolio' },
-  { label: 'Contact', path: '/contact' },
-];
+import { Menu, X } from 'lucide-react'; // For mobile viewports
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
+
+  // 1. Core Native Section Scroller Engine
+  const handleScrollTo = (e, sectionId) => {
+    e.preventDefault(); // Stop the browser from appending /services to the URL
+    
+    // For 'Home', simply scroll back to the top of the viewport
+    if (sectionId === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const targetElement = document.getElementById(sectionId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    setIsOpen(false); // Close mobile drawer if it's open
+  };
+
+  // 2. Map structural section link IDs to match our homepage components
+  const NAV_LINKS = [
+    { label: 'Home', targetId: 'top' },
+    { label: 'Services', targetId: 'services' },
+    { label: 'Portfolio', targetId: 'portfolio' },
+    { label: 'Why Us', targetId: 'why-choose-us' },
+    { label: 'Process', targetId: 'process' },
+    { label: 'FAQ', targetId: 'faq' },
+    { label: 'Contact', targetId: 'contact' }, // Redirecting to CTA box
+  ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 lg:px-8 pt-4">
-      {/* Container holding the glass panel bar */}
-      <div className="max-w-7xl mx-auto glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-glass border border-white/5">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#030014]/70 backdrop-blur-md border-b border-white/5">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
-        {/* Brand Logo Identity */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-accent to-brand-purple flex items-center justify-center font-black text-white text-sm tracking-wider shadow-neon-blue group-hover:scale-105 transition-transform duration-300">
-            D
-          </div>
-          <span className="font-sans text-xl font-extrabold tracking-tight text-white group-hover:text-brand-accent transition-colors duration-300">
-            DENKAR
-          </span>
-        </Link>
+        {/* Brand Logo Anchor */}
+        <a href="#top" onClick={(e) => handleScrollTo(e, 'top')} className="text-xl font-black text-white tracking-tighter">
+          DENKAR<span className="text-brand-accent">.</span>
+        </a>
 
-        {/* Desktop Interface Navigation */}
+        {/* DESKTOP MENU: Clean hardware-accelerated triggers */}
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => {
-            const isActive = location.pathname === link.path;
-            return (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="relative text-sm font-medium tracking-wide transition-colors duration-300 py-1"
-                style={{ color: isActive ? '#00d2ff' : '#b3b3b3' }}
-              >
-                {link.label}
-                {isActive && (
-                  <motion.div
-                    layoutId="navUnderline"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-accent rounded-full"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </Link>
-            );
-          })}
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={`#${link.targetId}`}
+              onClick={(e) => handleScrollTo(e, link.targetId)}
+              className="text-sm font-semibold text-text-secondary hover:text-brand-accent transition-colors duration-300"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
 
-        {/* Desktop Call To Action Trigger */}
-        <div className="hidden md:block">
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-brand-accent hover:text-black hover:shadow-neon-blue transition-all duration-300"
-          >
-            Get Quote
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        {/* Mobile Interactive Toggle Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2 md:hidden text-text-secondary hover:text-white transition-colors duration-300 focus:outline-none"
-          aria-label="Toggle structural layout navigation menu"
+        {/* MOBILE MENU TRIGGER BUTTON */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)} 
+          className="md:hidden text-white p-2 focus:outline-none"
+          aria-label="Toggle Navigation Menu"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
-      {/* Mobile Modal Dropdown Menu Expansion */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-20 left-4 right-4 glass-panel p-6 rounded-2xl flex flex-col gap-4 shadow-2xl border border-white/10 md:hidden z-50"
-          >
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`text-base font-semibold py-2 px-4 rounded-xl transition-all duration-300 ${
-                  location.pathname === link.path
-                    ? 'bg-brand-accent/10 text-brand-accent border-l-4 border-brand-accent'
-                    : 'text-text-secondary hover:bg-white/5 hover:text-white'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              to="/contact"
-              onClick={() => setIsOpen(false)}
-              className="mt-2 text-center w-full px-5 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider text-black bg-white hover:bg-brand-accent transition-all duration-300"
+      {/* MOBILE DROPDOWN DRAWER PANEL */}
+      {isOpen && (
+        <div className="md:hidden bg-[#030014]/95 border-b border-white/5 py-4 px-6 space-y-4 absolute top-20 left-0 right-0 flex flex-col backdrop-blur-lg">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={`#${link.targetId}`}
+              onClick={(e) => handleScrollTo(e, link.targetId)}
+              className="text-base font-bold text-text-secondary hover:text-white py-2 border-b border-white/[0.02]"
             >
-              Get Quote
-            </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
 </file>
 
-<file path="src/index.css">
-@import "tailwindcss";
+<file path="src/components/portfolio/Portfolio.jsx">
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import ProjectCard from './ProjectCard';
+
+// Array of Filter Categorization Slugs
+const FILTER_CATEGORIES = ['All', 'Web Applications', 'E-commerce', 'Dashboards', 'Landing Pages'];
+
+// Premium Mock Portfolio Deliverables Array Dataset
+const PORTFOLIO_DATA = [
+  {
+    title: 'Aura Crypto Ledger',
+    category: 'Web Applications',
+    tags: ['React', 'Web3.js', 'Tailwind', 'Framer Motion'],
+    imageColor: 'from-[#0f172a] via-[#1e1b4b] to-[#4c1d95]',
+  },
+  {
+    title: 'Veloce Global Market',
+    category: 'E-commerce',
+    tags: ['Next.js', 'GraphQL', 'Stripe API', 'Tailwind'],
+    imageColor: 'from-[#022c22] via-[#064e3b] to-[#115e59]',
+  },
+  {
+    title: 'Nexus Operations Deck',
+    category: 'Dashboards',
+    tags: ['React', 'Recharts', 'Zustand', 'WebSockets'],
+    imageColor: 'from-[#1c1917] via-[#44403c] to-[#78716c]',
+  },
+  {
+    title: 'Starlight SaaS Matrix',
+    category: 'Landing Pages',
+    tags: ['Vite', 'Tailwind CSS', 'Vanilla HTML5', 'GSAP'],
+    imageColor: 'from-[#172554] via-[#1e3a8a] to-[#1d4ed8]',
+  },
+  {
+    title: 'Solaria Energy Interface',
+    category: 'Dashboards',
+    tags: ['React Native', 'ChartJS', 'Tailwind', 'Firebase'],
+    imageColor: 'from-[#312e81] via-[#1e1b4b] to-[#4338ca]',
+  },
+  {
+    title: 'Apex Apparel Protocol',
+    category: 'E-commerce',
+    tags: ['Shopify Headless', 'Node.js', 'Tailwind', 'Redux'],
+    imageColor: 'from-[#581c87] via-[#3b0764] to-[#701a75]',
+  }
+];
+
+export default function Portfolio() {
+  const [activeFilter, setActiveFilter] = useState('All');
+
+  // Logic filter mechanism matching categorical vectors cleanly
+  const filteredProjects = activeFilter === 'All'
+    ? PORTFOLIO_DATA
+    : PORTFOLIO_DATA.filter(project => project.category === activeFilter);
+
+  return (
+    <section id="portfolio" className="py-24 relative overflow-hidden border-t border-white/5">
+      
+      {/* Decorative Ambient Background Glows */}
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-accent/5 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header Framework */}
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12 max-w-7xl mx-auto">
+          <div className="space-y-3 text-left max-w-xl">
+            <div className="inline-block text-xs font-bold tracking-widest text-brand-accent uppercase bg-brand-accent/10 border border-brand-accent/20 px-4 py-1.5 rounded-full">
+              Case Studies
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+              Proven Digital <span className="bg-gradient-to-r from-brand-accent to-brand-purple bg-clip-text text-transparent">Masterpieces</span>
+            </h2>
+            <p className="text-text-secondary text-sm sm:text-base">
+              Explore our gallery of high-performance digital engines engineered to achieve technical dominance.
+            </p>
+          </div>
+
+          {/* Dynamic Desktop/Mobile Filter Selection Component Array */}
+          <div className="flex flex-wrap gap-2 bg-white/[0.02] border border-white/5 p-1.5 rounded-2xl w-full md:w-auto overflow-x-auto scrollbar-none">
+            {FILTER_CATEGORIES.map((category) => {
+              const isSelected = activeFilter === category;
+              return (
+                <button
+                  key={category}
+                  onClick={() => setActiveFilter(category)}
+                  className="relative px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-colors duration-300 whitespace-nowrap outline-none focus:outline-none"
+                  style={{ color: isSelected ? '#000000' : '#b3b3b3' }}
+                >
+                  {/* Sliding Background Token Layer managed cleanly by Framer Motion */}
+                  {isSelected && (
+                    <motion.div
+                      layoutId="activeFilterBg"
+                      className="absolute inset-0 bg-white rounded-xl z-0"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{category}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Dynamic Structural Project Grid Shell Wrapper with AnimatePresence layout animations */}
+        <motion.div 
+          layout 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <ProjectCard
+                key={project.title}
+                title={project.title}
+                category={project.category}
+                tags={project.tags}
+                imageColor={project.imageColor}
+              />
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/portfolio/ProjectCard.jsx">
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, Folder } from 'lucide-react';
+
+export default function ProjectCard({ title, category, tags, imageColor }) {
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.4, type: 'spring', stiffness: 100, damping: 20 }}
+      whileHover={{ y: -6 }}
+      className="group relative rounded-2xl glass-panel overflow-hidden border border-white/5 shadow-glass flex flex-col h-full"
+    >
+      {/* High-End Simulated Project Hero Visual Layer */}
+      <div className={`w-full h-52 bg-gradient-to-br ${imageColor} relative overflow-hidden flex items-center justify-center p-6 border-b border-white/5`}>
+        {/* Decorative Grid Matrix inside Image Area */}
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff10_1px,transparent_1px)] bg-[size:16px_16px]" />
+        
+        {/* Floating Centered Technical Branding Emblem */}
+        <div className="w-14 h-14 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/80 group-hover:scale-110 group-hover:text-brand-accent group-hover:border-brand-accent/40 transition-all duration-500 shadow-xl z-10">
+          <Folder className="w-6 h-6" />
+        </div>
+
+        {/* Dynamic Image Overlay Sheen Effect on Hover */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-brand-purple/20 via-transparent to-brand-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      </div>
+
+      {/* Structured Content Metadata Frame */}
+      <div className="p-6 flex flex-col flex-grow justify-between space-y-4">
+        <div className="space-y-1">
+          <span className="text-xs font-semibold tracking-widest text-brand-accent uppercase">
+            {category}
+          </span>
+          <div className="flex items-start justify-between gap-2">
+            <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-brand-accent transition-colors duration-300">
+              {title}
+            </h3>
+            <ArrowUpRight className="w-5 h-5 text-text-muted group-hover:text-brand-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0" />
+          </div>
+        </div>
+
+        {/* Dynamic Tag Arrays */}
+        <div className="flex flex-wrap gap-1.5 pt-2">
+          {tags.map((tag) => (
+            <span 
+              key={tag} 
+              className="text-[11px] font-medium text-text-secondary bg-white/5 border border-white/5 px-2.5 py-0.5 rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/process/Process.jsx">
+import React from 'react';
+import ProcessStep from './ProcessStep';
+
+const PROCESS_DATA = [
+  {
+    stepNumber: 1,
+    title: 'Discovery & Vector Mapping',
+    description: 'We audit your systems, map out software features, and create a comprehensive technical execution document. Zero guesswork, absolute architectural clarity.',
+    details: ['System Audits', 'Scoping blueprints', 'User Flow Maps'],
+  },
+  {
+    stepNumber: 2,
+    title: 'High-Fidelity Architectural Design',
+    description: 'We sculpt wireframes into high-fidelity custom designs using premium typography layouts, fluid micro-interactions, and beautiful dark modes.',
+    details: ['Interactive Prototypes', 'Design Systems', 'UX Architecture'],
+  },
+  {
+    stepNumber: 3,
+    title: 'Full-Stack Technical Engineering',
+    description: 'We transform approved blueprints into clean, production-ready code. We build with modular structures, high-performance engines, and strict standards.',
+    details: ['React Native/Vite', 'Tailwind Layering', 'Clean API Hooks'],
+  },
+  {
+    stepNumber: 4,
+    title: 'Optimization & Production Launch',
+    description: 'We optimize code execution, maximize Core Web Vitals, pass through security validations, and deploy your site onto Vercel infrastructure.',
+    details: ['95+ Lighthouse Index', 'SEO Validation', 'Vercel Deployment'],
+  }
+];
+
+export default function Process() {
+  return (
+    <section id="process" className="py-24 relative overflow-hidden border-t border-white/5">
+      
+      {/* Decorative Ambient Lighting Spheres */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-brand-accent/5 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Title Header Block */}
+        <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
+          <div className="inline-block text-xs font-bold tracking-widest text-brand-accent uppercase bg-brand-accent/10 border border-brand-accent/20 px-4 py-1.5 rounded-full">
+            Our Strategy
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+            The Production <span className="bg-gradient-to-r from-brand-accent to-brand-purple bg-clip-text text-transparent">Lifecycle</span> Blueprint
+          </h2>
+          <p className="text-text-secondary text-base sm:text-lg">
+            We follow a structured deployment model designed to minimize friction and ship your project quickly without missing a pixel.
+          </p>
+        </div>
+
+        {/* Chronological Timeline Rail and Node Container */}
+        <div className="relative max-w-5xl mx-auto pl-10 md:pl-0">
+          
+          {/* Continuous Core Vertical Timeline Line */}
+          <div className="absolute left-4 md:left-1/2 top-4 bottom-4 w-[2px] bg-gradient-to-b from-brand-accent/50 via-brand-purple/40 to-white/5 md:-translate-x-1/2 pointer-events-none z-10" />
+
+          {/* Dynamic Grid Mapping */}
+          <div className="space-y-2">
+            {PROCESS_DATA.map((step, index) => (
+              <ProcessStep
+                key={step.stepNumber}
+                stepNumber={step.stepNumber}
+                title={step.title}
+                description={step.description}
+                details={step.details}
+                index={index}
+              />
+            ))}
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/process/ProcessStep.jsx">
+import React from 'react';
+import { motion } from 'framer-motion';
+
+export default function ProcessStep({ stepNumber, title, description, details, index }) {
+  // Determine if this item should align left or right on desktop layouts
+  const isEven = index % 2 === 0;
+
+  return (
+    <div className="relative flex flex-col md:flex-row items-center justify-between w-full mb-16 last:mb-0 group">
+      
+      {/* 1. Dynamic Desktop Layout Alternator Panels */}
+      <div className={`w-full md:w-[45%] ${isEven ? 'md:text-right md:order-1' : 'md:text-left md:order-2'} order-2`}>
+        <motion.div
+          initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, type: 'spring', stiffness: 70 }}
+          className="glass-panel p-6 md:p-8 rounded-2xl border border-white/5 shadow-glass space-y-3 relative overflow-hidden group-hover:border-brand-accent/20 transition-colors duration-300"
+        >
+          {/* Faint Background Watermark Number */}
+          <div className={`absolute top-2 ${isEven ? 'left-4' : 'right-4'} text-7xl font-black text-white/[0.02] select-none font-sans`}>
+            0{stepNumber}
+          </div>
+
+          <div className="space-y-1 relative z-10">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-accent">
+              Phase 0{stepNumber}
+            </span>
+            <h3 className="text-xl md:text-2xl font-bold tracking-tight text-white">
+              {title}
+            </h3>
+          </div>
+
+          <p className="text-text-secondary text-sm leading-relaxed relative z-10">
+            {description}
+          </p>
+
+          <div className={`flex flex-wrap gap-1.5 pt-2 relative z-10 ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
+            {details.map((detail) => (
+              <span key={detail} className="text-[10px] font-semibold text-text-muted bg-white/5 border border-white/5 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                {detail}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* 2. Absolute Visual Center Anchor Timeline Node Pin */}
+      <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center z-20 top-0 md:top-1/2 md:-translate-y-1/2 md:order-3">
+        <motion.div
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+          className="w-10 h-10 rounded-full bg-brand-bg border-4 border-white/10 flex items-center justify-center font-bold font-sans text-xs text-text-secondary group-hover:border-brand-accent group-hover:text-white transition-all duration-300 shadow-neon-blue"
+        >
+          0{stepNumber}
+        </motion.div>
+      </div>
+
+      {/* 3. Empty Layout Balancing Block for Desktop Positioning */}
+      <div className="hidden md:block w-[45%] md:order-4" />
+
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/services/ServiceCard.jsx">
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+
+export default function ServiceCard({ title, description, icon: Icon, delay }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.5, delay: delay, type: 'spring', stiffness: 80 }}
+      whileHover={{ y: -8, scale: 1.01 }}
+      className="group relative rounded-2xl p-6 md:p-8 glass-panel overflow-hidden transition-all duration-300 hover:border-brand-accent/30 hover:shadow-neon-blue cursor-pointer"
+    >
+      {/* Absolute Ambient Hover Glow Card Injections */}
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-brand-accent/5 to-brand-purple/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      
+      <div className="relative z-10 flex flex-col h-full justify-between space-y-6">
+        
+        {/* Upper Identity Row */}
+        <div className="flex items-start justify-between">
+          <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-accent group-hover:bg-gradient-to-br group-hover:from-brand-accent group-hover:to-brand-purple group-hover:text-white transition-all duration-300 shadow-sm">
+            <Icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6" />
+          </div>
+          
+          <div className="text-text-muted group-hover:text-brand-accent transition-colors duration-300">
+            <ArrowUpRight className="w-5 h-5 transform translate-x-1 -translate-y-1 opacity-40 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300" />
+          </div>
+        </div>
+
+        {/* Core Content Block */}
+        <div className="space-y-2">
+          <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-brand-accent transition-colors duration-300">
+            {title}
+          </h3>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {description}
+          </p>
+        </div>
+
+      </div>
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/services/Services.jsx">
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Globe, ShoppingCart, Briefcase, Cpu, Layout, BarChart3, RefreshCw } from 'lucide-react';
+import ServiceCard from './ServiceCard';
+
+// Comprehensive Core Capabilities Dataset Array
+const SERVICES_DATA = [
+  {
+    title: 'Custom Websites',
+    description: 'High-performance, bespoke web platforms engineered precisely around your startup brand identity. Zero boilerplate templates.',
+    icon: Globe,
+  },
+  {
+    title: 'E-commerce Architecture',
+    description: 'Conversion-optimized merchant pipelines featuring flawless transactional paths, tailored checkouts, and custom API systems.',
+    icon: ShoppingCart,
+  },
+  {
+    title: 'Corporate Solutions',
+    description: 'Highly credible, premium business solutions engineered to command market authority and captivate enterprise-tier operations.',
+    icon: Briefcase,
+  },
+  {
+    title: 'Advanced Web Applications',
+    description: 'Complex software layers constructed inside reactive states. Scalable client platforms processing dense asynchronous routines smoothly.',
+    icon: Cpu,
+  },
+  {
+    title: 'High-Converting Landing Pages',
+    description: 'Ultra-fast, meticulously structured visual flows designed explicitly to maximize conversion indexing for growth operations.',
+    icon: Layout,
+  },
+  {
+    title: 'Dashboard Infrastructure',
+    description: 'Intricate administrative back-office cockpits engineered with clear diagnostic visualization layers and real-time operational feeds.',
+    icon: BarChart3,
+  },
+  {
+    title: 'System Redesigns',
+    description: 'Transform legacy bottlenecks into fast, premium software systems. Complete architectural engine modernization overhauls.',
+    icon: RefreshCw,
+  },
+];
+
+export default function Services() {
+  return (
+    <section id="services" className="py-24 relative overflow-hidden border-t border-white/5">
+      
+      {/* Section Background Accent Gradient Nodes */}
+      <div className="absolute top-1/2 left-full -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-purple/5 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Typography Header Block */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div className="inline-block text-xs font-bold tracking-widest text-brand-purple uppercase bg-brand-purple/10 border border-brand-purple/20 px-4 py-1.5 rounded-full">
+            Our Core Capabilities
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+            Engineered Services Built for <span className="bg-gradient-to-r from-brand-accent to-brand-purple bg-clip-text text-transparent">Digital Dominance</span>
+          </h2>
+          <p className="text-text-secondary text-base sm:text-lg">
+            We bypass trivial configurations to hand-craft high-performance digital systems that elevate your metrics and outpace your competition.
+          </p>
+        </div>
+
+        {/* Dynamic Structural Capabilities Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {SERVICES_DATA.map((service, index) => (
+            <ServiceCard
+              key={service.title}
+              title={service.title}
+              description={service.description}
+              icon={service.icon}
+              // Dynamically stagger execution delay offsets across horizontal tracks
+              delay={(index % 3) * 0.1}
+            />
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/testimonials/Testimonials.jsx">
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+
+// Premium Enterprise Social Proof Dataset
+const TESTIMONIALS_DATA = [
+  {
+    name: 'Sarah Jenkins',
+    role: 'CTO, FinTech Nexus',
+    quote: "Denkar completely re-architected our client interface from scratch. Their component cleanliness and selection of modern tools saved our internal engineering team months of development overhead. Truly elite.",
+    rating: 5,
+  },
+  {
+    name: 'Marcus Thorne',
+    role: 'Founder, Veloce Global',
+    quote: "The speed optimization Denkar applied to our headless e-commerce store is unreal. Our checkout conversion index immediately scaled by 32% within two weeks of launching our new digital engine.",
+    rating: 5,
+  },
+  {
+    name: 'Elena Rostova',
+    role: 'Product Director, Solaria Energy',
+    quote: "Bypassing heavy templates to build a custom dashboard gave us absolute operational freedom. The UI/UX architecture feels premium, sleek, and matches top-tier Silicon Valley standards perfectly.",
+    rating: 5,
+  },
+];
+
+// Slider Animation Variants for Fluid Directional Flipping
+const slideVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? 300 : -300,
+    opacity: 0,
+    scale: 0.95
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: { type: 'spring', stiffness: 300, damping: 25 }
+  },
+  exit: (direction) => ({
+    x: direction < 0 ? 300 : -300,
+    opacity: 0,
+    scale: 0.95,
+    transition: { duration: 0.2 }
+  })
+};
+
+export default function Testimonials() {
+  // Triple State Tuple Architecture managing indices and direction
+  const [[page, direction], setPage] = useState([0, 0]);
+
+  // Wrap index mapping boundaries cleanly using math helpers
+  const activeIndex = Math.abs(page % TESTIMONIALS_DATA.length);
+
+  const navigateSlider = (newDirection) => {
+    setPage([page + newDirection, newDirection]);
+  };
+
+  const activeCard = TESTIMONIALS_DATA[activeIndex];
+
+  return (
+    <section id="testimonials" className="py-24 relative overflow-hidden border-t border-white/5">
+      
+      {/* Absolute Decorative Ambient Nebula Fields */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] bg-brand-accent/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-purple/5 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Typography Header Block */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div className="inline-block text-xs font-bold tracking-widest text-brand-purple uppercase bg-brand-purple/10 border border-brand-purple/20 px-4 py-1.5 rounded-full">
+            Client Endorsements
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+            Trusted By High-Growth <span className="bg-gradient-to-r from-brand-accent to-brand-purple bg-clip-text text-transparent">Innovators</span>
+          </h2>
+          <p className="text-text-secondary text-base sm:text-lg">
+            Don't just take our word for it. Here is how partner organizations describe our product craftsmanship.
+          </p>
+        </div>
+
+        {/* Master Slider Interactive Housing Shell */}
+        <div className="max-w-4xl mx-auto relative px-4 sm:px-12 flex flex-col items-center">
+          
+          <div className="w-full relative min-h-[340px] sm:min-h-[280px] flex items-center justify-center">
+            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+              <motion.div
+                key={page}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="w-full glass-panel p-8 md:p-12 rounded-2xl border border-white/5 shadow-glass relative overflow-hidden flex flex-col justify-between space-y-6 cursor-grab active:cursor-grabbing"
+              >
+                {/* Decorative Upper Giant Quote Symbol Icon */}
+                <Quote className="absolute right-8 top-6 w-24 h-24 text-white/[0.02] transform pointer-events-none stroke-[1.5]" />
+
+                {/* Rating Stars Array Layer */}
+                <div className="flex items-center gap-1 text-amber-400">
+                  {[...Array(activeCard.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current" />
+                  ))}
+                </div>
+
+                {/* Core Testimonial Copy block */}
+                <p className="text-white text-lg md:text-xl font-medium leading-relaxed italic">
+                  "{activeCard.quote}"
+                </p>
+
+                {/* Separator Line */}
+                <div className="border-t border-white/5 pt-6 flex items-center justify-between">
+                  <div>
+                    <h4 className="text-base font-bold text-white tracking-tight">
+                      {activeCard.name}
+                    </h4>
+                    <p className="text-xs text-brand-accent font-semibold tracking-wider uppercase">
+                      {activeCard.role}
+                    </p>
+                  </div>
+                  
+                  {/* Subtle Technical Footprint Indicator */}
+                  <span className="text-[10px] font-mono text-text-muted select-none tracking-widest hidden sm:inline">
+                    // VERIFIED_FEEDBACK
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Interactive Navigation Control Nodes Array */}
+          <div className="flex items-center gap-4 mt-8 z-20">
+            <button
+              onClick={() => navigateSlider(-1)}
+              className="p-3 rounded-full border border-white/10 bg-white/5 text-text-secondary hover:text-white hover:border-brand-accent hover:bg-brand-accent/10 transition-all duration-300 focus:outline-none"
+              aria-label="Previous Testimonial Slide"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            {/* Pagination Bullet Tracking Indicators */}
+            <div className="flex items-center gap-2">
+              {TESTIMONIALS_DATA.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeIndex === index ? 'w-6 bg-brand-accent' : 'w-1.5 bg-white/20'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={() => navigateSlider(1)}
+              className="p-3 rounded-full border border-white/10 bg-white/5 text-text-secondary hover:text-white hover:border-brand-accent hover:bg-brand-accent/10 transition-all duration-300 focus:outline-none"
+              aria-label="Next Testimonial Slide"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}
 </file>
 
 <file path="src/layouts/RootLayout.jsx">
@@ -612,49 +1828,45 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 </file>
 
-<file path="src/pages/ContactPage.jsx">
-import React from 'react';
-
-// Notice we explicitly add "default" here now
-export default function ContactPage() {
-  return (
-    <div className="pt-32 px-4 text-center text-white text-3xl font-bold tracking-tight">
-      Secure Contact Gateway <span className="text-brand-accent">Node</span>
-    </div>
-  );
-}
-</file>
-
 <file path="src/pages/Home.jsx">
 import React from 'react';
+import Hero from '../components/hero/Hero';
+import Services from '../components/services/Services';
+import Portfolio from '../components/portfolio/Portfolio';
+import Features from '../components/features/Features';
+import Process from '../components/process/Process';
+import Testimonials from '../components/testimonials/Testimonials';
+import FAQ from '../components/faq/FAQ';
+import Footer from '../components/footer/Footer'; // Added Step 10 Component Reference
 
 export default function Home() {
   return (
-    <div className="pt-32 pb-20 space-y-20">
-      <div className="text-center max-w-3xl mx-auto px-4 space-y-6">
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white">
-          We Build Next-Gen <span className="bg-gradient-to-r from-brand-accent to-brand-purple bg-clip-text text-transparent">Digital Engines</span>
-        </h1>
-        <p className="text-text-secondary text-lg md:text-xl">
-          Welcome to Denkar. The digital flagship node is under active deployment.
-        </p>
-      </div>
+    <div className="w-full relative">
+      {/* Step 3 Component */}
+      <Hero />
+      
+      {/* Step 4 Component */}
+      <Services />
+
+      {/* Step 5 Component */}
+      <Portfolio />
+
+      {/* Step 6 Component */}
+      <Features />
+
+      {/* Step 7 Component */}
+      <Process />
+
+      {/* Step 8 Component */}
+      <Testimonials />
+
+      {/* Step 9 Component */}
+      <FAQ />
+
+      {/* Step 10 Component Injection */}
+      <Footer />
     </div>
   );
-}
-</file>
-
-<file path="src/pages/PortfolioPage.jsx">
-import React from 'react';
-export default function PortfolioPage() {
-  return <div className="pt-32 px-4 text-center text-white text-3xl font-bold">Portfolio Showcase Node</div>;
-}
-</file>
-
-<file path="src/pages/ServicesPage.jsx">
-import React from 'react';
-export default function ServicesPage() {
-  return <div className="pt-32 px-4 text-center text-white text-3xl font-bold">Services Architecture Node</div>;
 }
 </file>
 
@@ -662,48 +1874,6 @@ export default function ServicesPage() {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    background-color: #030014;
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  body {
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* Custom Premium Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #030014;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #1a103c;
-    border-radius: 4px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #00d2ff;
-  }
-}
-
-/* Glassmorphic Utility Shortcut */
-@layer utilities {
-  .glass-panel {
-    background: rgba(10, 5, 32, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-}
 </file>
 
 <file path="tailwind.config.js">
@@ -751,6 +1921,16 @@ export default {
   },
 
   plugins: [],
+}
+</file>
+
+<file path="vercel.json">
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
 </file>
 

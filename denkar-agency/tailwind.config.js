@@ -10,8 +10,8 @@ export default {
       colors: {
         // Premium Dark Theme Palette
         brand: {
-          bg: '#030014',       // Deep space black/purple hue
-          surface: '#0a0520',  // Card/Section surface background
+          bg: '#000000',       // Changed from #030014 to pure black
+          surface: '#0a0a0a',  // Changed from #0a0520 to dark gray/black // Card/Section surface background
           accent: '#00d2ff',   // Electric Blue
           purple: '#7928ca',   // Deep Royal Purple
           glow: '#9b51e0',     // Accent glow color

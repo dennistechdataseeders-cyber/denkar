@@ -8,37 +8,19 @@ const SERVICES_DATA = [
   {
     title: 'Custom Websites',
     description: 'High-performance, bespoke web platforms engineered precisely around your startup brand identity. Zero boilerplate templates.',
-    icon: Globe,
   },
   {
     title: 'E-commerce Architecture',
     description: 'Conversion-optimized merchant pipelines featuring flawless transactional paths, tailored checkouts, and custom API systems.',
-    icon: ShoppingCart,
   },
-  {
-    title: 'Corporate Solutions',
-    description: 'Highly credible, premium business solutions engineered to command market authority and captivate enterprise-tier operations.',
-    icon: Briefcase,
-  },
-  {
-    title: 'Advanced Web Applications',
-    description: 'Complex software layers constructed inside reactive states. Scalable client platforms processing dense asynchronous routines smoothly.',
-    icon: Cpu,
-  },
+  
   {
     title: 'High-Converting Landing Pages',
     description: 'Ultra-fast, meticulously structured visual flows designed explicitly to maximize conversion indexing for growth operations.',
-    icon: Layout,
   },
   {
     title: 'Dashboard Infrastructure',
     description: 'Intricate administrative back-office cockpits engineered with clear diagnostic visualization layers and real-time operational feeds.',
-    icon: BarChart3,
-  },
-  {
-    title: 'System Redesigns',
-    description: 'Transform legacy bottlenecks into fast, premium software systems. Complete architectural engine modernization overhauls.',
-    icon: RefreshCw,
   },
 ];
 
@@ -57,7 +39,7 @@ export default function Services() {
             Our Core Capabilities
           </div>
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
-            Engineered Services Built for <span className="bg-gradient-to-r from-brand-accent to-brand-purple bg-clip-text text-transparent">Digital Dominance</span>
+            Engineered Services Built for <span className="bg-gradient-to-r from-brand-accent to-white bg-clip-text text-transparent">Digital Dominance</span>
           </h2>
           <p className="text-text-secondary text-base sm:text-lg">
             We bypass trivial configurations to hand-craft high-performance digital systems that elevate your metrics and outpace your competition.
